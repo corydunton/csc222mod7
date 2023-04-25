@@ -11,10 +11,9 @@ package cduntonm7q1;
 public class TheHill {
 	
 	// Need FileDialog for saving txt file
-	//import java.awt.FileDialog;
+	import java.awt.FileDialog;
 
 	public static void main(String[] args) {
-		
 
 	}
 
