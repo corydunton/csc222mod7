@@ -75,7 +75,7 @@ public class TrackInsurance extends MenuInfo {
 				
 			} else if (choice == 999) {
 				System.out.println("Bye!!!!!");
-				choice = -1;
+				choice = -2;
 			}
 		} // end while
 
