@@ -49,9 +49,8 @@ public class TheHill {
 		} finally {
 			inputFile.close();
 		}
-		
-		printLines(poem, counter);
 
+		printLines(poem, counter);
 		System.exit(0);
 
 	}
