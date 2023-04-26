@@ -8,8 +8,6 @@ package cduntonm7q1;
 // Then have it print out the first word of this many lines of the poem.
 // Make words lower-case
 
-// Need FileDialog for opening txt file
-import java.awt.FileDialog;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -29,7 +27,6 @@ public class TheHill {
 		// Open file
 		File file = new File(theHillWeClimb);
 		Scanner inputFile = null;
-		int counter = 0;
 
 		try {
 			inputFile = new Scanner(file);
@@ -39,7 +36,6 @@ public class TheHill {
 				String line = inputFile.nextLine();
 				if (!line.isEmpty()) {
 					poem.add(line);
-					counter++;
 				}
 			}
 		} catch (IOException ioe) {
@@ -50,14 +46,14 @@ public class TheHill {
 			inputFile.close();
 		}
 
-		printLines(poem, counter);
+		printLines(poem);
 		System.exit(0);
 
 	}
 
-	public static void printLines(ArrayList<String> poem, int counter) {
+	public static void printLines(ArrayList<String> poem) {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("The number of non-blank lines in the poem: " + counter);
+		System.out.println("The number of non-blank lines in the poem: " + poem.size());
 		System.out.println("In how many lines do you want to see the first word?");
 		int numLines = scan.nextInt();
 		System.out.println("First words of the first " + numLines + " lines (lower-case):");
