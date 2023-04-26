@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import readWriteFiles.FileLoc;
+import cduntonm7q1.FileLoc;
 
 public class TheHill {
 
