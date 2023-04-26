@@ -49,18 +49,19 @@ public class TheHill {
 		} finally {
 			inputFile.close();
 		}
-
-		System.out.println("The number of non-blank lines in the poem: " + counter);
-		System.out.println("In how many lines do you want to see the first word?");
-		int numLines = scan.nextInt();
-		System.out.println("First words of the first " + numLines + " lines (lower-case):");
-		printLines(poem, numLines);
+		
+		printLines(poem, counter);
 
 		System.exit(0);
 
 	}
 
-	public static void printLines(ArrayList<String> poem, int numLines) {
+	public static void printLines(ArrayList<String> poem, int counter) {
+		Scanner scan = new Scanner(System.in);
+		System.out.println("The number of non-blank lines in the poem: " + counter);
+		System.out.println("In how many lines do you want to see the first word?");
+		int numLines = scan.nextInt();
+		System.out.println("First words of the first " + numLines + " lines (lower-case):");
 		for (int i = 0; i < numLines; i++) {
 			String[] words = poem.get(i).split(" ");
 			System.out.print(words[0].toLowerCase() + " ");
