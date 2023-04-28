@@ -78,7 +78,7 @@ public class Customer implements Comparable<Customer> {
 	 */
 
 	public String toString() {
-		return first + " " + last + ",Id=" + id;
+		return first + " " + last + ", ID = " + id;
 	}
 
 	/**

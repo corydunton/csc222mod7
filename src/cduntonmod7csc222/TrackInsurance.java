@@ -64,15 +64,15 @@ public class TrackInsurance extends MenuInfo {
 			} else if (choice == 6) {
 				sortPolNum(ins);
 			} else if (choice == 7) {
-				
+				storeData(ins, cust);
 			} else if (choice == 8) {
-				
+				readData(ins, cust);
 			} else if (choice == 9) {
-				
+				clearData(ins, cust);
 			} else if (choice == 10) {
-				
+				addCust(cust);
 			} else if (choice == 11) {
-				
+				addPolicy(ins, cust);
 			} else if (choice == 999) {
 				System.out.println("Bye!!!!!");
 				choice = -1;
