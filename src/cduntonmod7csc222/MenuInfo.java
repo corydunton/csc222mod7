@@ -6,17 +6,48 @@ import cduntonm7q1.FileLoc;
 
 public class MenuInfo {
 
-	public static void loadData(ArrayList<Customer> cust, ArrayList<Insurance> ins) {
+	public static void loadData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
+		Scanner scan = new Scanner(System.in);
+		ins.clear();
+		cust.clear();
+		// create some fake customers (used for testing the program)
+		Customer c = new Customer("Duck", "Donald");
+		Customer c1 = new Customer("Mouse", "Minnie");
+		Customer c2 = new Customer("Mouse", "Mickey");
+		Customer c3 = new Customer("Brown", "Charlie");
 
+		// add the customers to the array list
+		cust.add(c3);
+		cust.add(c2);
+		cust.add(c1);
+		cust.add(c);
+
+		// make and add some insurance policies to the ArrayList
+		ins.add(new AutoInsurance(c, 2));
+		ins.add(new AutoInsurance(c1, 3));
+		ins.add(new HealthInsurance(c, 5));
+		ins.add(new HealthInsurance(c2, 1));
+		ins.add(new LifeInsurance(c, 30000, 65));
+		ins.add(new LifeInsurance(c1, 400000, 34));
+
+		// add your ArtInsurance instances here
+		ins.add(new ArtInsurance(c1, "Mona Lisa", 500000));
+		ins.add(new ArtInsurance(c, "The Starry Night", 400000));
+		ins.add(new ArtInsurance(c, "The Last Supper", 390000));
+		ins.add(new ArtInsurance(c1, "The Scream", 450000));
+		ins.add(new ArtInsurance(c2, "Girl with a Pearl Earring", 350000));
+
+		System.out.println("\nFake data loaded.");
+		scan.nextLine();
 	}
 
 	public static void printAllCustomers(ArrayList<Customer> cust) {
 		Scanner scan = new Scanner(System.in);
+
 		for (Customer c : cust) {
 			System.out.println(c.toString());
 		}
-		System.out.println();
-		System.out.println("Press enter to see the menu.");
+		System.out.println("\nPress enter to see the menu.");
 		scan.nextLine();
 	}
 
@@ -27,8 +58,7 @@ public class MenuInfo {
 		for (Insurance ins : insure) {
 			System.out.println(ins.toString());
 		}
-		System.out.println();
-		System.out.println("Press enter to see the menu.");
+		System.out.println("\nPress enter to see the menu.");
 		scan.nextLine();
 	}
 
@@ -51,7 +81,7 @@ public class MenuInfo {
 			System.out.println("*** That policy does not exist. ***");
 		}
 
-		System.out.println("Press enter to see the menu.");
+		System.out.println("\nPress enter to see the menu.");
 		scan.nextLine();
 	}
 
@@ -78,7 +108,7 @@ public class MenuInfo {
 	// this one is tougher since you can not use the Collections.sort() method
 	// permanently changes the order of the list
 	public static void sortCustNum(ArrayList<Insurance> insure) {
-
+		Scanner scan = new Scanner(System.in);
 		for (int out = insure.size() - 1; out > 1; out--) {
 			for (int in = 0; in < out; in++) {
 				Insurance ins = insure.get(in);
@@ -92,13 +122,18 @@ public class MenuInfo {
 				}
 			}
 		}
+		System.out.println("\nSuccesfully sorted policies by customer number. Press enter.");
+		scan.nextLine();
 	}
 
 	// write a method that sorts the policies by policy number
 	// look at the example in the search_sort package
 	// permanently changes the order of the list
 	public static void sortPolNum(ArrayList<Insurance> insure) {
+		Scanner scan = new Scanner(System.in);
 		Collections.sort(insure);
+		System.out.println("\nSuccesfully sorted policies by policy number. Press enter.");
+		scan.nextLine();
 	}
 
 	public static void storeData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
@@ -124,12 +159,11 @@ public class MenuInfo {
 			outputFile.close();
 		}
 
-		System.out.println();
-		System.out.println("Your file has been written. Press enter to see the menu.");
+		System.out.println("\nYour file has been written. Press enter.");
 		scan.nextLine();
 	}
 
-	public static void readData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {	// what's the use of the ArrayLists?
+	public static void readData() { // what's the use of the ArrayLists?
 		Scanner scan = new Scanner(System.in);
 		// Get filename
 		String data = FileLoc.pickLocRead();
@@ -154,14 +188,16 @@ public class MenuInfo {
 			inputFile.close();
 		}
 
-		System.out.println();
-		System.out.println("Press enter to see the menu.");
+		System.out.println("\nPress enter to see the menu.");
 		scan.nextLine();
 	}
 
 	public static void clearData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
+		Scanner scan = new Scanner(System.in);
 		ins.clear();
 		cust.clear();
+		System.out.println("\nData cleared succesfully. Press enter.");
+		scan.nextLine();
 	}
 
 	public static void addCust(ArrayList<Customer> cust) {
@@ -172,17 +208,14 @@ public class MenuInfo {
 		String last = scan.nextLine();
 		Customer c = new Customer(last, first);
 		cust.add(c);
+		System.out.println("\nCustomer added succesfully. Press enter.");
+		scan.nextLine();
 	}
 
 	public static void addPolicy(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
-
-		// Need to work on this method.
-		// polSelect is not working properly in the if statements
-		// also need booleans to loop if invalid response
-
 		Scanner scan = new Scanner(System.in);
-		boolean invalid = true;
 		int custSelect = 0;
+		boolean invalid = true;
 		while (invalid) {
 			System.out.println("Which customer?");
 
@@ -191,8 +224,9 @@ public class MenuInfo {
 			}
 			custSelect = scan.nextInt();
 			scan.nextLine();
+			custSelect -= 1;
 
-			if (custSelect > cust.size() + 1) {
+			if (custSelect > cust.size()) {
 				System.out.println("Invalid choice");
 				invalid = true;
 			} else {
@@ -204,40 +238,35 @@ public class MenuInfo {
 		while (invalid2) {
 			System.out.println("What type of policy? (A) Auto, (R) Art, (H) Health, or (L) Life?");
 			String polSelect = scan.nextLine();
-			polSelect = polSelect.toLowerCase();
 
-			if (polSelect == "a") {
+			if (polSelect.equalsIgnoreCase("A")) {
 				System.out.println("How many cars do you have?");
 				int numCars = scan.nextInt();
-				// scan.nextLine();
 				ins.add(new AutoInsurance(cust.get(custSelect), numCars));
 				invalid2 = false;
 			}
 
-			else if (polSelect == "r") {
+			else if (polSelect.equalsIgnoreCase("R")) {
 				System.out.println("What is the description of the piece?");
 				String desc = scan.nextLine();
 				System.out.println("What is its value?");
 				int val = scan.nextInt();
-				// scan.nextLine();
 				ins.add(new ArtInsurance(cust.get(custSelect), desc, val));
 				invalid2 = false;
 			}
 
-			else if (polSelect == "h") {
+			else if (polSelect.equalsIgnoreCase("H")) {
 				System.out.println("How many dependents do you have?");
 				int numDependents = scan.nextInt();
-				// scan.nextLine();
 				ins.add(new HealthInsurance(cust.get(custSelect), numDependents));
 				invalid2 = false;
 			}
 
-			else if (polSelect == "l") {
+			else if (polSelect.equalsIgnoreCase("L")) {
 				System.out.println("How much insurance would you like?");
 				int amount = scan.nextInt();
 				System.out.println("What is your age?");
 				int age = scan.nextInt();
-				// scan.nextLine();
 				ins.add(new LifeInsurance(cust.get(custSelect), amount, age));
 				invalid2 = false;
 			}
@@ -247,5 +276,8 @@ public class MenuInfo {
 				invalid2 = true;
 			}
 		}
+		scan.nextLine();
+		System.out.println("Policy added succesfully. Press enter.");
+		scan.nextLine();
 	}
 }

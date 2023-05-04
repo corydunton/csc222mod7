@@ -7,6 +7,7 @@ public class TrackInsurance extends MenuInfo {
 
 	// method that runs first
 	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(System.in);
 		// make an ArrayList of customers and insurance policies
 		ArrayList<Customer> cust = new ArrayList<Customer>();
 		// note - the ArrayList below can hold Insurance objects
@@ -41,10 +42,10 @@ public class TrackInsurance extends MenuInfo {
 		ins.add(new ArtInsurance(c2, "Girl with a Pearl Earring", 350000));
 
 		int choice = 0;
-		while (choice >= 0) {
+		while (choice >= -1) {
 			choice = menu();
 			if (choice == -1) {
-					//loadData();
+				loadData(ins, cust);
 			} else if (choice == 1) {
 				printAllCustomers(cust);
 			} else if (choice == 2) {
@@ -66,7 +67,7 @@ public class TrackInsurance extends MenuInfo {
 			} else if (choice == 7) {
 				storeData(ins, cust);
 			} else if (choice == 8) {
-				readData(ins, cust);
+				readData();
 			} else if (choice == 9) {
 				clearData(ins, cust);
 			} else if (choice == 10) {
@@ -76,7 +77,11 @@ public class TrackInsurance extends MenuInfo {
 			} else if (choice == 999) {
 				System.out.println("Bye!!!!!");
 				choice = -2;
+			} else if (choice > 11 && choice != 999) {
+				System.out.println("Invalid choice. Press enter.");
+				scan.nextLine();
 			}
+
 		} // end while
 
 	}
@@ -101,8 +106,4 @@ public class TrackInsurance extends MenuInfo {
 		return value;
 
 	}
-
-	// write a printAllCusts method that prints out the toString method for all
-	// of the customers
-	
 }
