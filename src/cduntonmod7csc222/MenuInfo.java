@@ -1,19 +1,15 @@
 package cduntonmod7csc222;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 import cduntonm7q1.FileLoc;
 
 public class MenuInfo {
 
-	public static void loadData(ArrayList<Customer> cust, ArrayList<Insurance> ins) {		
+	public static void loadData(ArrayList<Customer> cust, ArrayList<Insurance> ins) {
 
 	}
-	
+
 	public static void printAllCustomers(ArrayList<Customer> cust) {
 		Scanner scan = new Scanner(System.in);
 		for (Customer c : cust) {
@@ -54,7 +50,7 @@ public class MenuInfo {
 		if (!exists) {
 			System.out.println("*** That policy does not exist. ***");
 		}
-		
+
 		System.out.println("Press enter to see the menu.");
 		scan.nextLine();
 	}
@@ -76,8 +72,8 @@ public class MenuInfo {
 		if (!exists) {
 			System.out.println("*** There are no policies for that customer. ***\n");
 		}
-	}	
-	
+	}
+
 	// write a method that sorts the policies by customer number
 	// this one is tougher since you can not use the Collections.sort() method
 	// permanently changes the order of the list
@@ -104,22 +100,22 @@ public class MenuInfo {
 	public static void sortPolNum(ArrayList<Insurance> insure) {
 		Collections.sort(insure);
 	}
-	
+
 	public static void storeData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
 		Scanner scan = new Scanner(System.in);
-		String fileName = FileLoc.pickLocOut();		
+		String fileName = FileLoc.pickLocOut();
 		PrintWriter outputFile = null;
-		
+
 		try {
 			outputFile = new PrintWriter(fileName);
-			
-			// Get data and write it to the file			
+
+			// Get data and write it to the file
 			for (int i = 0; i < cust.size(); i++) {
 				outputFile.println(cust.get(i).toString());
 			}
 			for (int i = 0; i < ins.size(); i++) {
 				outputFile.println(ins.get(i).toString());
-			}			
+			}
 		} catch (IOException ioe) {
 			System.out.println("IO Exception. Need to exit.");
 			System.out.println(ioe.getMessage());
@@ -127,13 +123,13 @@ public class MenuInfo {
 		} finally {
 			outputFile.close();
 		}
-		
+
 		System.out.println();
 		System.out.println("Your file has been written. Press enter to see the menu.");
 		scan.nextLine();
 	}
 
-	public static void readData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
+	public static void readData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {	// what's the use of the ArrayLists?
 		Scanner scan = new Scanner(System.in);
 		// Get filename
 		String data = FileLoc.pickLocRead();
@@ -157,17 +153,17 @@ public class MenuInfo {
 		} finally {
 			inputFile.close();
 		}
-		
+
 		System.out.println();
 		System.out.println("Press enter to see the menu.");
 		scan.nextLine();
 	}
-	
+
 	public static void clearData(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
 		ins.clear();
 		cust.clear();
 	}
-	
+
 	public static void addCust(ArrayList<Customer> cust) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Customer first name: ");
@@ -177,79 +173,75 @@ public class MenuInfo {
 		Customer c = new Customer(last, first);
 		cust.add(c);
 	}
-	
+
 	public static void addPolicy(ArrayList<Insurance> ins, ArrayList<Customer> cust) {
-		
-		
+
 		// Need to work on this method.
 		// polSelect is not working properly in the if statements
 		// also need booleans to loop if invalid response
-		
-		
-		
+
 		Scanner scan = new Scanner(System.in);
 		boolean invalid = true;
 		int custSelect = 0;
 		while (invalid) {
 			System.out.println("Which customer?");
-	
+
 			for (int i = 0; i < cust.size(); i++) {
-				System.out.println(i+1 + ":\t" + cust.get(i).toString());
+				System.out.println(i + 1 + ":\t" + cust.get(i).toString());
 			}
 			custSelect = scan.nextInt();
 			scan.nextLine();
-			
-			if (custSelect > cust.size()+1) {
+
+			if (custSelect > cust.size() + 1) {
 				System.out.println("Invalid choice");
 				invalid = true;
-			}
-			else {
+			} else {
 				invalid = false;
 			}
 		}
-		
+
 		boolean invalid2 = true;
 		while (invalid2) {
 			System.out.println("What type of policy? (A) Auto, (R) Art, (H) Health, or (L) Life?");
 			String polSelect = scan.nextLine();
 			polSelect = polSelect.toLowerCase();
-			
+
 			if (polSelect == "a") {
 				System.out.println("How many cars do you have?");
 				int numCars = scan.nextInt();
-				//scan.nextLine();
+				// scan.nextLine();
 				ins.add(new AutoInsurance(cust.get(custSelect), numCars));
 				invalid2 = false;
 			}
-			
+
 			else if (polSelect == "r") {
 				System.out.println("What is the description of the piece?");
 				String desc = scan.nextLine();
 				System.out.println("What is its value?");
 				int val = scan.nextInt();
-				//scan.nextLine();
+				// scan.nextLine();
 				ins.add(new ArtInsurance(cust.get(custSelect), desc, val));
 				invalid2 = false;
 			}
-			
+
 			else if (polSelect == "h") {
 				System.out.println("How many dependents do you have?");
 				int numDependents = scan.nextInt();
-				//scan.nextLine();
+				// scan.nextLine();
 				ins.add(new HealthInsurance(cust.get(custSelect), numDependents));
 				invalid2 = false;
 			}
-			
+
 			else if (polSelect == "l") {
 				System.out.println("How much insurance would you like?");
 				int amount = scan.nextInt();
 				System.out.println("What is your age?");
 				int age = scan.nextInt();
-				//scan.nextLine();
+				// scan.nextLine();
 				ins.add(new LifeInsurance(cust.get(custSelect), amount, age));
 				invalid2 = false;
 			}
-			
+
 			else {
 				System.out.println("Invalid choice.");
 				invalid2 = true;

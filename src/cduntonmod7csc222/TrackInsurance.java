@@ -44,7 +44,7 @@ public class TrackInsurance extends MenuInfo {
 		while (choice >= 0) {
 			choice = menu();
 			if (choice == -1) {
-					
+					//loadData();
 			} else if (choice == 1) {
 				printAllCustomers(cust);
 			} else if (choice == 2) {
