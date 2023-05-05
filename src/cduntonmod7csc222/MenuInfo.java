@@ -43,12 +43,16 @@ public class MenuInfo {
 
 	public static void printAllCustomers(ArrayList<Customer> cust) {
 		Scanner scan = new Scanner(System.in);
-
-		for (Customer c : cust) {
-			System.out.println(c.toString());
+		if (cust.size() == 0) {
+			System.out.println("\nThere are no customers. Press enter.");
+			scan.nextLine();
+		} else {
+			for (Customer c : cust) {
+				System.out.println(c.toString());
+			}
+			System.out.println("\nPress enter to see the menu.");
+			scan.nextLine();
 		}
-		System.out.println("\nPress enter to see the menu.");
-		scan.nextLine();
 	}
 
 	// write a printAllInsurance method that prints out the toString method for
@@ -90,6 +94,7 @@ public class MenuInfo {
 	// that customer number is passed in. If none, have it print
 	// "There are no policies for that customer"
 	public static void getCustomer(ArrayList<Insurance> insure, int num) {
+		Scanner scan = new Scanner(System.in);
 		boolean exists = false;
 
 		for (Insurance ins : insure) { // start for
@@ -102,6 +107,8 @@ public class MenuInfo {
 		if (!exists) {
 			System.out.println("*** There are no policies for that customer. ***\n");
 		}
+		System.out.println("\nPress enter to see the menu.");
+		scan.nextLine();
 	}
 
 	// write a method that sorts the policies by customer number
@@ -159,7 +166,7 @@ public class MenuInfo {
 			outputFile.close();
 		}
 
-		System.out.println("\nYour file has been written. Press enter.");
+		System.out.println("\nPress enter.");
 		scan.nextLine();
 	}
 

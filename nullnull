@@ -1,0 +1,15 @@
+Charlie Brown, ID = 203
+Mickey Mouse, ID = 202
+Minnie Mouse, ID = 201
+Donald Duck, ID = 200
+Donald Duck, ID = 200 with policy number 1000 has a yearly rate of $1,000.00 for auto insurance. The number of cars are 2.
+Minnie Mouse, ID = 201 with policy number 1001 has a yearly rate of $1,500.00 for auto insurance. The number of cars are 3.
+Donald Duck, ID = 200 with policy number 1002 has a yearly rate of $2,500.00 for heatlh insurance. The number of dependents is 5.
+Mickey Mouse, ID = 202 with policy number 1003 has a yearly rate of $500.00 for heatlh insurance. The number of dependents is 1.
+Donald Duck, ID = 200 with policy number 1004 has a yearly rate of $300.00 for life insurance. The amount of insurance wanted is 30000, and the age is 65
+Minnie Mouse, ID = 201 with policy number 1005 has a yearly rate of $2,000.00 for life insurance. The amount of insurance wanted is 400000, and the age is 34
+Minnie Mouse, ID = 201 with policy number 1006 has a yearly rate of $12,500.00 for art insurance. The art work is Mona Lisa, and the value is 500000.0.
+Donald Duck, ID = 200 with policy number 1007 has a yearly rate of $10,000.00 for art insurance. The art work is The Starry Night, and the value is 400000.0.
+Donald Duck, ID = 200 with policy number 1008 has a yearly rate of $9,750.00 for art insurance. The art work is The Last Supper, and the value is 390000.0.
+Minnie Mouse, ID = 201 with policy number 1009 has a yearly rate of $11,250.00 for art insurance. The art work is The Scream, and the value is 450000.0.
+Mickey Mouse, ID = 202 with policy number 1010 has a yearly rate of $8,750.00 for art insurance. The art work is Girl with a Pearl Earring, and the value is 350000.0.
