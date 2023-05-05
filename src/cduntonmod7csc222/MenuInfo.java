@@ -152,12 +152,17 @@ public class MenuInfo {
 			outputFile = new PrintWriter(fileName);
 
 			// Get data and write it to the file
-			for (int i = 0; i < cust.size(); i++) {
-				outputFile.println(cust.get(i).toString());
+			for (int i = 0; i < ins.size(); i++) {	// insurance first
+				outputFile.println(ins.get(i).toStringF());
 			}
-			for (int i = 0; i < ins.size(); i++) {
-				outputFile.println(ins.get(i).toString());
+			for (int i = 0; i < cust.size(); i++) {	// customers second
+				outputFile.println(cust.get(i).toStringF());
 			}
+			int nextCustNum = cust.get(0).getId()+1;
+			outputFile.println("CustNum|" + nextCustNum);
+			int nextPolNum = ins.get(ins.size()-1).getPolicyNumber()+1;
+			outputFile.println("InsNum|" + nextPolNum);
+			
 		} catch (IOException ioe) {
 			System.out.println("IO Exception. Need to exit.");
 			System.out.println(ioe.getMessage());
@@ -166,7 +171,7 @@ public class MenuInfo {
 			outputFile.close();
 		}
 
-		System.out.println("\nPress enter.");
+		System.out.println("\nFile written succesfully. Press enter.");
 		scan.nextLine();
 	}
 

@@ -47,7 +47,7 @@ public class LifeInsurance extends Insurance {
 	}
 	
 	public String toStringF() {
-		return "LFE|" + super.toStringF() + "|" + age;
+		return "LFE|" + super.toStringF() + "|" + amount + "|" + age;
 	}
 
 

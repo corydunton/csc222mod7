@@ -8,13 +8,13 @@ import cduntonm7q1.FileLoc;
 public class TestScores {
 
 	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
 		ArrayList<Integer> scores = readFile();
 		Collections.sort(scores);
 		badValues(scores);
 		displayScores(scores);
-		scoresAvg(scores);
 		valsDistribution(scores);
+		scoresAvg(scores);
+		System.exit(0);
 	}
 
 	public static ArrayList<Integer> readFile() {
@@ -25,15 +25,17 @@ public class TestScores {
 		// Open file
 		File nums = new File(data);
 		Scanner inputFile = null;
+		
 
 		try {
 			inputFile = new Scanner(nums);
 
 			// Read lines from file
-			while (inputFile.hasNextLine()) {
+			while (inputFile.hasNextInt()) {
 				int num = inputFile.nextInt();
 				scores.add(num);
 			}
+			
 		} catch (IOException | InputMismatchException ex) {
 			System.out.println(ex.getClass().getSimpleName() + ". Need to exit.");
 			if (ex.getMessage() != null) {
@@ -45,14 +47,14 @@ public class TestScores {
 		finally {
 			inputFile.close();
 		}
-
+		scan.close();
 		return scores;
 	}
 
 	public static void badValues(ArrayList<Integer> scores) {
 		System.out.println("The Bad Values: ");
 		int badVal = 0;
-		for (int i = 0; i < scores.size(); i++) {
+		for (int i = scores.size() - 1; i >= 0; i--) {
 			if (scores.get(i) < 0 || scores.get(i) > 100) {
 				badVal++;
 				System.out.println(scores.get(i));
@@ -101,10 +103,9 @@ public class TestScores {
 				currentScores.add(score);
 			}
 		}
-
+		System.out.println();
 		System.out.println("The following is a distribution of values: ");
 		for (int i = 0; i < scoresByTens.size(); i++) {
-			List<Integer> currentScores = scoresByTens.get(i);
 			int minScore = i * 10;
 			int maxScore = minScore + 9;
 			String scoreBracket = minScore + "-" + maxScore;
@@ -116,6 +117,7 @@ public class TestScores {
 			}
 			System.out.println(scoreBracket + " - " + scoresByTens.get(i).size());
 		}
+		System.out.println();
 	}
 
 	public static void scoresAvg(ArrayList<Integer> scores) {
@@ -124,6 +126,6 @@ public class TestScores {
 		for (int s : scores)
 			sum += s;
 		double average = sum / scores.size();
-		System.out.println("\nThe average value is: " + df.format(average));
+		System.out.println("The average value is: " + df.format(average));
 	}
 }

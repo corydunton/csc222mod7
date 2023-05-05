@@ -37,7 +37,7 @@ public class ArtInsurance extends Insurance {
 	}
 	
 	public String toStringF() {
-		return "ART|" + super.toStringF() + "|" + value;
+		return "ART|" + super.toStringF() + "|" + description + "|" + value;
 	}
 
 

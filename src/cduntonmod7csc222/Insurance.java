@@ -106,7 +106,8 @@ public abstract class Insurance implements Comparable<Insurance> {
 	 * used to print to a file
 	 */
 	public String toStringF() {
-		return "";
+		return customer.getFirst() + "|" + customer.getLast() + "|" + customer.getId() + "|"
+				+ yearlyRate + "|" + policyNumber + "|";
 		// this needs to return "FirstName|LastName|CustID|InsCost|PolicyNum"
 //		return "|" + super.toStringF() + "|" + numCars;
 	}
